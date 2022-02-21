@@ -1,0 +1,116 @@
+@import "nullstyle.scss";
+@import "ui.scss";
+
+$ff:'Lato', sans-serif;
+
+body {
+    font-family: $ff;
+}
+
+.wrapper {
+    overflow: hidden;
+    // чтобы wrapper был на всю высоту:
+    min-height: 100%; 
+}
+
+
+
+.container {
+    max-width: 1130px;
+    padding: 0 15px;
+}
+
+// ОСНОВНОЙ БЛОК
+
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    // чтобы скрыть фантомные отступы, кт могут появляться
+    font-size: 0;
+    flex-direction: column;
+}
+
+.main-screen {
+    flex: 1 0 100%;
+    position: relative;
+    // min-height: 100%;
+    &__bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+}
+
+.content {
+
+}
+
+/* HEADER================================================================= */
+
+.header {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    left: 0;
+    top: 35px;
+/*     display: flex;
+    justify-content: center; */
+    &__row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 85px;
+    };
+    &__logo {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, 0)
+    };
+}
+
+.nav {
+    &__body {
+
+    };
+    &__list {
+        display: flex;
+        li {
+            padding: 0 37px;
+            position: relative;
+            &:after {
+                content: '';
+                background: #4d4959;
+                width: 2px;
+                height: 2px;
+                border-radius: 50%;
+                position: absolute;
+                top: 60%;
+                right: 0;
+            }
+            &:nth-child(2) {
+                padding: 0 110px 0 37px;
+            }
+            &:nth-child(3) {
+                padding: 0 37px 0 110px;
+            }
+            &:last-child,
+            &:nth-child(2) {
+                &:after { display: none;}
+            }
+        }
+
+    };
+    &__link {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #4d4959;
+    };
+}
