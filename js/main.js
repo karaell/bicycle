@@ -9,3 +9,19 @@ function ibg() {
 }
 
 ibg();
+
+const UI = {
+    BURGER: document.querySelector('.header__burger'),
+    NAV: document.querySelector('.nav__body'),
+    LOGO: document.querySelector('.header__logo'),
+    BODY: document.querySelector('body'),
+}
+
+UI.BURGER.addEventListener('click', openNav)
+
+function openNav () {
+    UI.BURGER.classList.toggle('active');
+    UI.NAV.classList.toggle('active');
+    UI.LOGO.classList.toggle('active');
+    UI.BODY.classList.toggle('lock');
+}

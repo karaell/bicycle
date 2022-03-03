@@ -1,10 +1,14 @@
 @import "nullstyle.scss";
 @import "ui.scss";
+@import "content.scss";
 
 $ff:'Lato', sans-serif;
 
 body {
     font-family: $ff;
+    &.lock {
+        overflow: hidden;
+    }
 }
 
 .wrapper {
@@ -18,6 +22,7 @@ body {
 .container {
     max-width: 1130px;
     padding: 0 15px;
+    margin: 0 auto;
 }
 
 // ОСНОВНОЙ БЛОК
@@ -47,10 +52,6 @@ body {
     }
 }
 
-.content {
-
-}
-
 /* HEADER================================================================= */
 
 .header {
@@ -59,25 +60,35 @@ body {
     z-index: 1;
     left: 0;
     top: 35px;
-/*     display: flex;
-    justify-content: center; */
-    &__row {
+    &__body {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 85px;
+        height: 85px;   
     };
     &__logo {
         position: absolute;
         left: 50%;
         top: 0;
-        transform: translate(-50%, 0)
-    };
+        z-index: 2;
+        transform: translate(-50%, 0);
+        transition: all 0.3s;
+    }
+    @media (max-width: 767px) {
+        top: 15px;
+        &__logo {
+            left: 5%;
+            transform: translate(0, 0);
+            &.active {
+                left: 50%;
+                transform: translate(-50%, 0);
+            }
+        }
+    }
 }
 
 .nav {
     &__body {
-
     };
     &__list {
         display: flex;
@@ -105,7 +116,6 @@ body {
                 &:after { display: none;}
             }
         }
-
     };
     &__link {
         font-size: 13px;
@@ -113,4 +123,79 @@ body {
         text-transform: uppercase;
         color: #4d4959;
     };
+    @media (max-width: 767px) {
+        &__body {
+            background-color: #282f35;
+            position: fixed;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 140px 0 20px 0;
+            transition: all 0.3s;
+            overflow: auto;
+            &.active {
+                top: 0;
+            }
+        }
+        &__list {
+            flex-direction: column;
+            align-items: center;
+            li {
+                padding: 0 0 45px 0; // можно просто написать padding: 0 !important
+                &:nth-child(2),
+                &:nth-child(3) {
+                    padding: 0 0 45px 0;
+                    &:after { display: block;}
+                }
+                &:last-child {
+                    padding: 0;
+                }
+                &:after {
+                background: #ffffff;
+                width: 4px;
+                height: 4px;
+                top: 40px;
+                right: 50%;
+                }
+            }
+        }
+        &__link {
+            color: #fff;
+            font-size: 20px;
+        }
+    }
+}
+
+
+.header__burger {
+    display: none;
+    @media (max-width: 767px) {
+        display: block;
+        width: 30px;
+        height: 20px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 1;
+        cursor: pointer;
+        span {
+            width: 100%;
+            height: 2px;
+            position: absolute;
+            left: 0;
+            background-color: #282f35;
+            &:first-child {
+                top:9px;
+            }
+            &:last-child {
+                bottom: 0;
+            }
+        }
+        &.active {
+            span {
+                background-color: #fff;
+            }
+        }
+    }
 }
